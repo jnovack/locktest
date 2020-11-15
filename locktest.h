@@ -29,7 +29,6 @@
  * Vincent ROQUETA 2005 - vincent.roqueta@ext.bull.net
  */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdlib.h>
@@ -56,16 +55,16 @@
 #include <sys/select.h>
 
 #ifdef O_SYNC
-#define OPENFLAGS       (O_CREAT | O_RDWR | O_SYNC )
+#define OPENFLAGS (O_CREAT | O_RDWR | O_SYNC)
 #else
-#define OPENFLAGS       (O_CREAT | O_RDWR )
+#define OPENFLAGS (O_CREAT | O_RDWR)
 #endif
-#define OPENMODES       (0600)
-#define MANDMODES       (0600)
+#define OPENMODES (0600)
+#define MANDMODES (0600)
 /*(02666)*/
 
 #define SUCCES 1
-#define ECHEC  0
+#define ECHEC 0
 
 #define TRUE 1
 #define FALSE 0
@@ -73,24 +72,21 @@
 #define PROCESS 0
 #define THREAD 1
 
-
 //#define DEBUG
 #ifdef DEBUG
-        #define E(a)  perror(a)
-        #define P(a,b) printf(a,b)
+#define E(a) perror(a)
+#define P(a, b) printf(a, b)
 #else
-        #define E(a)
-        #define P(a,b)
+#define E(a)
+#define P(a, b)
 #endif
-
-
 
 #ifndef locktest_H
 #define locktest_H
 
 #define M_SIZE 512
 
-int writeToAllClients(char *foo);//#define DEBUG
+int writeToAllClients(char *foo); //#define DEBUG
 
 int serverReceiveNet();
 int clientReceiveNet();
@@ -101,26 +97,27 @@ int getConfiguration(int *type, char *fname, int *nThread);
 int readFromServer(char *message);
 int serverSendClient(int n);
 
-
-enum etat_t     {
-                CLEAN,
-                RDONLY,
-                RESULTAT,
-                WRONLY,
-                SELECT,
-                LOCK,
-                SYNC,
-                FIN,
-                READLOCK,
-                WRITELOCK,
-                BYTELOCK,
-                BYTELOCK_READ,
-                BYTELOCK_WRITE
+enum etat_t
+{
+    CLEAN,
+    RDONLY,
+    RESULTAT,
+    WRONLY,
+    SELECT,
+    LOCK,
+    SYNC,
+    FIN,
+    READLOCK,
+    WRITELOCK,
+    BYTELOCK,
+    BYTELOCK_READ,
+    BYTELOCK_WRITE
 };
 
 /* Donnees communes aà tous les processu */
 /* Public data */
-struct donneesPub {
+struct donneesPub
+{
     /* Nombre de clients */
     /* Number of clients */
     int nclnt;
@@ -146,30 +143,28 @@ struct donneesPub {
 
 /* Donnees privees aux processus */
 /* private data */
-struct donneesPriv {
+struct donneesPriv
+{
     /* Numero de thread. */
     /* thread number */
     int whoami;
 };
 
-struct donneesFils{
+struct donneesFils
+{
     struct donneesPub *dp;
     struct donneesPriv *dpr;
 };
 
-
-struct s_test {
+struct s_test
+{
     int test;
     int type;
     char *nom;
     int resAtt;
-
 };
 
-
-
-
-int configureServeur(int  max);
+int configureServeur(int max);
 int configureClient(char *s);
 
 #endif
