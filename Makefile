@@ -1,4 +1,4 @@
-All: 
-	gcc -Wall -o locktests locktests.c netsync.c
+All:
+	gcc -Wall -o locktest locktest.c netsync.c
 clean :
-	rm -f *.o;rm -f locktests
+	rm -f *.o;rm -f locktest

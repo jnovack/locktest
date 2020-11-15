@@ -1,5 +1,5 @@
 COMPILE : make
-RUN LOCAL: ./locktests -n <number of concurent process> -f <test file> [-T]
+RUN LOCAL: ./locktest -n <number of concurent process> -f <test file> [-T]
 
 
 GOAL : This test is aimed at stressing the fcntl locking functions.
@@ -20,12 +20,12 @@ Slaves are concurrent processes or threads.
 
 
 
-RUN NETWORK 
+RUN NETWORK
 Test server:
-./locktests -n <number of concurent processes> -f <test file> -c <number of clients>
+./locktest -n <number of concurent processes> -f <test file> -c <number of clients>
 
 Test clients:
-./locktests --server <server host name>
+./locktest --server <server host name>
 
 
 Multiple clients options
@@ -46,13 +46,13 @@ ______________
 
 
 
-EXAMPLE (Local testing): 
-./locktests -n 50 -f /file/system/to/test
+EXAMPLE (Local testing):
+./locktest -n 50 -f /file/system/to/test
 
 EXAMPLE (Multiple clients):
 -test server
 test machine1: host1
-./locktest -n 50 -f /network/file/system/to/test -c 3 
+./locktest -n 50 -f /network/file/system/to/test -c 3
 (Server waiting for 3 clients to be connected)
 
 -test clients:
@@ -140,8 +140,7 @@ process      |   set a read lock    |     Allowed         Denied     |    Allowe
              |   write              |     Allowed         Allowed    |    Denied          Denied    |
 =====================================================================================================
 
-Please, visit 
+Please, visit
 
-https://sourceforge.net/projects/locktests
+https://sourceforge.net/projects/locktest
 http://nfsv4.bullopensource.org/tools/tests/page39.php for more documentation.
-

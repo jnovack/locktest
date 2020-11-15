@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# This script aims to help to run locktests with several clients.
+# This script aims to help to run locktest with several clients.
 #
 # Report bugs to Vincent ROQUETA : vincent.roqueta@ext.bull.net
 
@@ -19,8 +19,8 @@ NFS4_SERVER=""
 TEST_HOME="/home/vincent/locks/"
 testfile=NFS4_PATH+"/testfile"
 
-app="locktests"
-SRC="locktests-2.tar.gz"
+app="locktest"
+SRC="locktest-2.tar.gz"
 SRC_PATH="deploy"
 install="'tar xzf "+SRC+"; cd locks;  make `"
 user="root"
@@ -52,7 +52,7 @@ class Client(Machine):
     def do(self):
         self.command="ssh "+user+"@"+self.machine+" "+self.command
         os.system(self.command)
-    
+
     def isomount(self, dir):
         export=NFS4_SERVER
         mntpoint=NFS4_PATH
@@ -98,7 +98,7 @@ class Serveur(Machine):
 def usage():
         print "\n"
         print "usage:"
-        print "locktests.py <-n process -f testfile ><--setup -s fs_server> -c host1, host2, host3 ... "
+        print "locktest.py <-n process -f testfile ><--setup -s fs_server> -c host1, host2, host3 ... "
         print "--setup : setup the configuration, deploy test on other test machines; This option also requires -c and -s"
         print "-c <machine>     : host list to deploy/run/clean the test"
         print "-s <machine>     : NFS server to use to setup the test"
@@ -108,14 +108,14 @@ def usage():
         print "Example :"
         print "========="
         print "*Setup machines for testing"
-        print "./locktests.py --setup -c testmachine1 testmachine2 testmachine3 -s my_nfs_server:/"
+        print "./locktest.py --setup -c testmachine1 testmachine2 testmachine3 -s my_nfs_server:/"
         print "\n"
         print "*Run test on testmachine1,testmachine2 with 50 process on each machine using /mnt/nfsv4/testfile"
-        print "./locktests.py -n 50 -f /mnt/nfsv4/testfile -c testmachine1 testmachine2"
+        print "./locktest.py -n 50 -f /mnt/nfsv4/testfile -c testmachine1 testmachine2"
         print "\n"
         print "_________________________________"
         print "Vincent ROQUETA - 2005\n"
-        
+
         return 0
 
 
@@ -194,7 +194,7 @@ for i in rge:
         f=True
         continue
 
-    if a=="clients":    
+    if a=="clients":
        clients.append(args[i])
        continue
     if a=="file":
@@ -207,7 +207,7 @@ for i in rge:
         NFS4_SERVER=args[i]
         continue
 
-        
+
     usage()
 # For ...
 if s:
@@ -218,7 +218,7 @@ if s:
     print NFS4_SERVER
     setup()
     print "Setup complete"
-    
+
 if r:
     if (not c) or (not f) or (not n):
         usage()
@@ -226,12 +226,3 @@ if r:
 
     print "Running test"
     run()
-    
-
-
-
-
-    
-              
-
-

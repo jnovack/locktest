@@ -1,11 +1,11 @@
-locktest.py aims to help running locktests over multiple NFS
+locktest.py aims to help running locktest over multiple NFS
 clients accessing the same server.
 
 
 
 Setting up lock test with several test machines.
 ================================================
-./locktests.py --setup -c <machine1> [machine2 ...] -s <my_nfs_server>:</>
+./locktest.py --setup -c <machine1> [machine2 ...] -s <my_nfs_server>:</>
 
 --setup                    : Option to setup the test
 -c <machine> [...]         : Setup test on these clients
@@ -13,7 +13,7 @@ Setting up lock test with several test machines.
 
 
 Example:
-./locktests.py --setup -c client1 client2 client3 -s NFS_Server:/exported/directory
+./locktest.py --setup -c client1 client2 client3 -s NFS_Server:/exported/directory
 
 
 
@@ -23,7 +23,7 @@ Example:
 Running lock test over several test machines.
 =============================================
 Run test on already configured test machines.
-./locktests.py -n <pid> -f <file> -c <machine1> [machine2 ...]
+./locktest.py -n <pid> -f <file> -c <machine1> [machine2 ...]
 
 -n <process_id>     : Process number each test machine will lauch to perform the test
 -f <file>           : Test file. That must be the same on each machine
@@ -31,11 +31,10 @@ Run test on already configured test machines.
 
 
 Example:
-./locktests.py -n 50 -f /mnt/nfsv4/testfile -c testmachine1 testmachine2 
+./locktest.py -n 50 -f /mnt/nfsv4/testfile -c testmachine1 testmachine2
 
 
 
-_________________________________ 
- Vincent ROQUETA - 2016 vincent.roqueta@atos.net 
+_________________________________
+ Vincent ROQUETA - 2016 vincent.roqueta@atos.net
  Vincent ROQUETA - 2005 vincent.roqueta@ext.bull.net
-
