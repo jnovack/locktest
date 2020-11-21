@@ -9,11 +9,12 @@ RUN apt-get update && \
 
 COPY . .
 
-RUN gcc -Wall -o locktest locktest.c netsync.c
+RUN gcc -Wall -o locktest cmd/locktest/locktest.c cmd/locktest/netsync.c
 
 ###############################################################################
 # final stage
 FROM ubuntu
 COPY --from=build /opt/locktest /usr/local/bin/locktest
 
-ENTRYPOINT ["/usr/local/bin/locktest", "-n", "50", "-f", "/mnt/locktest.tmp"]
+ENTRYPOINT ["/usr/local/bin/locktest"]
+CMD ["-n", "50", "-f", "/mnt/locktest.tmp"]
